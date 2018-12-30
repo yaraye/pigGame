@@ -10,10 +10,12 @@ GAME RULES:
 */
 
 var currentPlayer, score, roundScore, gamePlaying;
+
 restart();
 
 document.querySelector('.btn-roll').addEventListener('click', function (){
-    // if(gamePlaying){
+  
+    if(gamePlaying){
     //change the dice randomly
 var dice = Math.floor(Math.random() * 6) + 1;
     
@@ -32,11 +34,11 @@ if(dice !== 1){
 nextPlayer();
    }
 
-    // }
+    }
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function (){
-    // if(gamePlaying){
+    if(gamePlaying){
           //hold-add current score to global score
     score[currentPlayer] += roundScore
 
@@ -49,13 +51,13 @@ document.querySelector('.btn-hold').addEventListener('click', function (){
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player-' + currentPlayer + '-panel').classList.add('winner');
         document.querySelector('.player-' + currentPlayer + '-panel').classList.remove('active');
-        // gamePlaying = false;
+        gamePlaying = false;
         // document.querySelector('.btn-new').textContent = 'GameOver';
     }else {
         nextPlayer();
     }
         
-    // }
+    }
   
 
 });
@@ -78,11 +80,13 @@ function nextPlayer (){
        }
 
 }
+document.querySelector('.btn-new').addEventListener('click', restart);
 
 function restart(){
     currentPlayer = 0;
     score = [0,0];
     roundScore = 0;
+    gamePlaying = true;
     //clear the results and set it to zero
 document.getElementById('current-0').textContent = 0;
 document.getElementById('current-1').textContent = 0;
@@ -101,4 +105,3 @@ document.querySelector('.player-0-panel').classList.add('active');
 
 }
 
-document.querySelector('.btn-new').addEventListener('click', restart);
